@@ -1,7 +1,7 @@
 package com.Labs.TwitterLabs.services.implementations;
 
 import com.Labs.TwitterLabs.models.Post;
-import com.Labs.TwitterLabs.services.abstractions.IPostService;
+import com.Labs.TwitterLabs.services.abstractions.PostServiceImpl;
 import database.Database;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class PostService implements IPostService {
+public class PostService implements PostServiceImpl {
 
     private Database database;
     public PostService()

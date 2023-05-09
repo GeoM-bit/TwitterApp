@@ -1,7 +1,7 @@
 package com.Labs.TwitterLabs.services.implementations;
 
 import com.Labs.TwitterLabs.models.User;
-import com.Labs.TwitterLabs.services.abstractions.IUserService;
+import com.Labs.TwitterLabs.services.abstractions.UserServiceImpl;
 import database.Database;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Service
-public class UserService implements IUserService {
+public class UserService implements UserServiceImpl {
 
     //just for testing
     private Database database;

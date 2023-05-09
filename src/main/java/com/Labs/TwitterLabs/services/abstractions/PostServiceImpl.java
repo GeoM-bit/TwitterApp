@@ -5,7 +5,7 @@ import com.Labs.TwitterLabs.models.Post;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface IPostService {
+public interface PostServiceImpl {
 
     boolean addPost(String username, Post post);
     List<Post> getPosts(String username, LocalDateTime timestamp);
