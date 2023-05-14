@@ -1,0 +1,38 @@
+CREATE TABLE Users (
+    user_id UUID PRIMARY KEY,
+    username VARCHAR(255) unique not null,
+    email VARCHAR(255) unique not null,
+    firstname VARCHAR(255) not null,
+    lastname VARCHAR(255) not null,
+    password VARCHAR(255) not null
+);
+
+
+CREATE TABLE UserFollowersFollowing (
+    id UUID PRIMARY KEY,
+    follower_id UUID REFERENCES Users(user_id),
+    followed_id UUID REFERENCES Users(user_id)
+);
+
+CREATE TABLE Posts (
+    post_id UUID PRIMARY KEY,
+    user_id UUID REFERENCES Users(user_id),
+    content VARCHAR(255) not null,
+    date TIMESTAMP not null
+);
+
+
+CREATE TABLE Likes (
+    like_id UUID PRIMARY KEY,
+    user_id UUID REFERENCES Users(user_id),
+    post_id UUID REFERENCES Posts(post_id)
+);
+
+CREATE TABLE Replies (
+    reply_id UUID PRIMARY KEY,
+    user_id UUID REFERENCES Users(user_id),
+    post_id UUID REFERENCES Posts(post_id),
+    reply_to_id UUID REFERENCES Replies(reply_id),
+    message VARCHAR(255) not null,
+    is_public boolean not null
+);
