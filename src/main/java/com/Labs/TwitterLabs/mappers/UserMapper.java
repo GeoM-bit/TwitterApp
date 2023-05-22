@@ -1,10 +1,7 @@
 package com.Labs.TwitterLabs.mappers;
 
 import com.Labs.TwitterLabs.models.User;
-import com.Labs.TwitterLabs.models.dtos.RegisterDTO;
-import com.Labs.TwitterLabs.models.dtos.RegisterResponseDTO;
-import com.Labs.TwitterLabs.models.dtos.SearchResponseDTO;
-import com.Labs.TwitterLabs.models.dtos.SearchResponseListItemDTO;
+import com.Labs.TwitterLabs.models.dtos.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -18,4 +15,6 @@ public interface UserMapper {
     SearchResponseDTO userToSearchResponseDTO(User user);
     SearchResponseListItemDTO userToSearchResponseListItemDTO(User user);
     List<SearchResponseDTO> userListToSearchResponseDTOList(List<User> users);
+    PostUserDTO userToPostUserDTO(User user);
+    LikeUserDTO userToLikeUser(User user);
 }
