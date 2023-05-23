@@ -1,12 +1,15 @@
 package com.Labs.TwitterLabs.services.abstractions;
 
 import com.Labs.TwitterLabs.models.User;
+import com.Labs.TwitterLabs.models.dtos.*;
 
 import java.util.List;
 
 public interface UserServiceImpl {
 
-    boolean register(User user);
-    List<User> search(String userName, String firstName, String lastName);
-    boolean follow(User follower, User followed);
+    RegisterResponseDTO register(RegisterDTO registerUser);
+    List<SearchResponseDTO> search(SearchDTO searchDTO);
+    Boolean existsUserByEmail(String email);
+    Boolean existsUserByUserName(String userName);
+    Boolean follow(FollowDTO followDTO);
 }

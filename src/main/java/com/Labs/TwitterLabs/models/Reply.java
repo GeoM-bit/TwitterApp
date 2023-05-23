@@ -5,18 +5,18 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Like {
+@Table(name="replies")
+public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID like_id;
+    private UUID reply_id;
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     @JoinColumn(name = "post_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
-
-    public Like() {
-
-    }
+    @JoinColumn(name = "reply_id", nullable = true)
+    @OneToOne(fetch = FetchType.LAZY)
+    private Reply reply;
 }

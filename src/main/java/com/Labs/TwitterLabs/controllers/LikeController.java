@@ -18,7 +18,7 @@ public class LikeController {
     }
     @PostMapping(value = "/{username}/{postID}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void addPost(@PathVariable String username, @PathVariable int postID) {
-         likeService.likePost(new Like(username), username, postID);
+         //likeService.likePost(new Like(username), username, postID);
     }
 
 }

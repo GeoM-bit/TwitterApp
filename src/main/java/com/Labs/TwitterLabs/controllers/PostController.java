@@ -1,13 +1,14 @@
 package com.Labs.TwitterLabs.controllers;
 
 import com.Labs.TwitterLabs.models.Post;
+import com.Labs.TwitterLabs.models.dtos.GetPostsDTO;
+import com.Labs.TwitterLabs.models.dtos.PostDTO;
+import com.Labs.TwitterLabs.models.dtos.RegisterPostDTO;
 import com.Labs.TwitterLabs.services.implementations.PostService;
-import com.Labs.TwitterLabs.services.implementations.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -17,18 +18,18 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    public PostController(UserService userService) {
+    public PostController(PostService postService) {
         this.postService = postService;
     }
 
-    @PostMapping(value = "/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean addPost(@RequestBody Post post, @PathVariable String username) {
-        return postService.addPost(username,post);
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RegisterPostDTO> addPost(@RequestBody RegisterPostDTO registerPostDTO) {
+        return ResponseEntity.ok(postService.addPost(registerPostDTO));
     }
 
-    @GetMapping(value="/posts/{username}")
-    public List<Post> getPosts(@PathVariable String username, @RequestParam(required = false) LocalDateTime timestamp) {
-        return postService.getPosts(username, timestamp);
+    @PostMapping(value="/posts", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<PostDTO>> getPosts(@RequestBody GetPostsDTO getPostsDTO) {
+        return ResponseEntity.ok(postService.getPosts(getPostsDTO));
     }
 
     @GetMapping(value="/feed/{username}")

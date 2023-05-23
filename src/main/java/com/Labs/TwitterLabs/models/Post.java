@@ -2,21 +2,33 @@ package com.Labs.TwitterLabs.models;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="posts")
 public class Post {
-
-    private int postId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID post_id;
     private String message;
     private LocalDateTime timestamp;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
-
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Like> likes;
 
-    public Post(int id, String message, LocalDateTime timestamp, User user) {
-        this.postId = id;
+    public Post(UUID id, String message, LocalDateTime timestamp, User user) {
+        this.post_id = id;
         this.message = message;
         this.timestamp = timestamp;
         this.user = user;
+    }
+
+    public Post() {
+
     }
 
     public void setMessage(String message) {
@@ -51,7 +63,7 @@ public class Post {
         likes.add(like);
     }
 
-    public int getPostId() {
-        return postId;
+    public UUID getPostId() {
+        return post_id;
     }
 }

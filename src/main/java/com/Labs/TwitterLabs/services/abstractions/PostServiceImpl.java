@@ -1,14 +1,17 @@
 package com.Labs.TwitterLabs.services.abstractions;
 
 import com.Labs.TwitterLabs.models.Post;
+import com.Labs.TwitterLabs.models.dtos.GetPostsDTO;
+import com.Labs.TwitterLabs.models.dtos.PostDTO;
+import com.Labs.TwitterLabs.models.dtos.RegisterPostDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface PostServiceImpl {
 
-    boolean addPost(String username, Post post);
-    List<Post> getPosts(String username, LocalDateTime timestamp);
+    RegisterPostDTO addPost(RegisterPostDTO registerPostDTO);
+    List<PostDTO> getPosts(GetPostsDTO getPostsDTO);
 
     List<Post> getFeed(String username);
 }
